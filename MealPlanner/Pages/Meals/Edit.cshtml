@@ -1,0 +1,52 @@
+﻿@page
+@model MealPlanner.Pages.Meals.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Meal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Meal.ID" />
+            <div class="form-group">
+                <label asp-for="Meal.Title" class="control-label"></label>
+                <input asp-for="Meal.Title" class="form-control" />
+                <span asp-validation-for="Meal.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Meal.Description" class="control-label"></label>
+                <input asp-for="Meal.Description" class="form-control" />
+                <span asp-validation-for="Meal.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Meal.Notes" class="control-label"></label>
+                <input asp-for="Meal.Notes" class="form-control" />
+                <span asp-validation-for="Meal.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Meal.Favourite" /> @Html.DisplayNameFor(model => model.Meal.Favourite)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

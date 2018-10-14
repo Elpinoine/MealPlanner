@@ -1,0 +1,44 @@
+﻿@page
+@model MealPlanner.Pages.RecipeIngredients.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Recipe ingredient</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RecipeIngredient.Ingredient" class="control-label"></label>
+                <select asp-for="RecipeIngredient.IngredientID" asp-items="Model.Ingredients"></select>
+                <span asp-validation-for="RecipeIngredient.Ingredient"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="RecipeIngredient.Amount" class="control-label"></label>
+                <input asp-for="RecipeIngredient.Amount" class="form-control" />
+                <span asp-validation-for="RecipeIngredient.Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RecipeIngredient.MeasureUnit" class="control-label"></label>
+                <select asp-for="RecipeIngredient.MeasureUnitID" asp-items="Model.MeasureUnits"></select>
+                <span asp-validation-for="RecipeIngredient.MeasureUnit"></span>
+            </div>           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

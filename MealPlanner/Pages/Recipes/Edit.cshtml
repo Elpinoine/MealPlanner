@@ -1,0 +1,65 @@
+﻿@page
+@model MealPlanner.Pages.Recipes.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Recipe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Recipe.Steps" class="control-label"></label>
+                <input asp-for="Recipe.Steps" class="form-control" />
+                <span asp-validation-for="Recipe.Steps" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Recipe.ID" />
+            <div class="form-group">
+                <label asp-for="Recipe.Title" class="control-label"></label>
+                <input asp-for="Recipe.Title" class="form-control" />
+                <span asp-validation-for="Recipe.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipe.Description" class="control-label"></label>
+                <input asp-for="Recipe.Description" class="form-control" />
+                <span asp-validation-for="Recipe.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipe.Notes" class="control-label"></label>
+                <input asp-for="Recipe.Notes" class="form-control" />
+                <span asp-validation-for="Recipe.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Recipe.Favourite" /> @Html.DisplayNameFor(model => model.Recipe.Favourite)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h4>Ingredients</h4>
+<div>
+    <a asp-page="/RecipeIngredients/Create" asp-route-id="@Model.Recipe.ID">Add ingredient</a>
+</div>
+<div>
+    <partial name="../RecipeIngredientsPartial/Index.cshtml" model="Model.RecipeIngredients" />
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,46 @@
+﻿@page
+@model MealPlanner.Pages.Meals.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Meal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Meal.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Meal.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Meal.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Meal.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Meal.Notes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Meal.Notes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Meal.Favourite)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Meal.Favourite)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Meal.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
