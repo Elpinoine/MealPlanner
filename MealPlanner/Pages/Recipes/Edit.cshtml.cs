@@ -17,8 +17,8 @@ namespace MealPlanner.Pages.Recipes
         public EditModel(MealPlanner.Models.MealPlannerContext context)
         {
             _context = context;
-            RecipeIngredients = _context.RecipeIngredient.Select(x => new  { Value = x.ID.ToString(), Text = x. }).ToList();
-
+//            RecipeIngredients = _context.RecipeIngredient.Select(x => new  { Value = x.ID.ToString(), Text = x.Ingredient.ToString()}).ToList();
+   
         }
 
         [BindProperty]
@@ -38,6 +38,8 @@ namespace MealPlanner.Pages.Recipes
             }
             else {
                 Recipe = await _context.Recipe.FirstOrDefaultAsync(m => m.ID == id);
+                // TODO: check for null
+                RecipeIngredients = _context.RecipeIngredient.Where(x => x.Recipe.ID == Recipe.ID).ToList();
             }
             if (Recipe == null)
             {

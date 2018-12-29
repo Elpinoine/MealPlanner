@@ -9,15 +9,20 @@ namespace MealPlanner.Models
     public class RecipeIngredient
     {
         public int ID { get; set; }
+        [Required]
         public Recipe Recipe { get; set; }
 
         [Required]
-        //        public Ingredient Ingredient { get; set; }
-        [Display(Name = "Ingredient")]
         public int IngredientID { get; set; }
+        [Display(Name = "Ingredient")]
+        [Required]
         public virtual Ingredient Ingredient { get; set; }
+        //       public Ingredient Ingredient { get; set; }
+        //        [Display(Name = "Ingredient")]
+        //        public int IngredientID { get; set; }
 
         [Required]
+        [Display(Name = "Amount")]
         public decimal Amount { get; set; }
 
         [Required]

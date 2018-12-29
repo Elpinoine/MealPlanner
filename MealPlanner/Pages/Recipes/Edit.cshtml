@@ -48,18 +48,7 @@
     </div>
 </div>
 
-<h4>Ingredients</h4>
-<div>
-    <a asp-page="/RecipeIngredients/Create" asp-route-id="@Model.Recipe.ID">Add ingredient</a>
-</div>
-<div>
-    <partial name="../RecipeIngredientsPartial/Index.cshtml" model="Model.RecipeIngredients" />
-</div>
-
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
