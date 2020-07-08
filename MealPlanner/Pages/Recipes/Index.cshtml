@@ -5,22 +5,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Recipes</h2>
+<h2>Index</h2>
 
 <p>
-    <a asp-page="Edit">Create New</a>
+    <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Reference)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Recipe[0].Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Recipe[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].Favourite)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Recipe[0].Notes)
@@ -32,13 +32,13 @@
 @foreach (var item in Model.Recipe) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Favourite)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Notes)

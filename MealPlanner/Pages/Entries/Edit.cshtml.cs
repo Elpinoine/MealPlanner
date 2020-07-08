@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MealPlanner.Models;
 
-namespace MealPlanner.Pages.MeasureUnits
+namespace MealPlanner.Pages.Entries
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace MealPlanner.Pages.MeasureUnits
         }
 
         [BindProperty]
-        public MeasureUnit MeasureUnit { get; set; }
+        public PlanEntry PlanEntry { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace MealPlanner.Pages.MeasureUnits
                 return NotFound();
             }
 
-            MeasureUnit = await _context.MeasureUnit.FirstOrDefaultAsync(m => m.ID == id);
+            PlanEntry = await _context.PlanEntry.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (MeasureUnit == null)
+            if (PlanEntry == null)
             {
                 return NotFound();
             }
@@ -45,7 +45,7 @@ namespace MealPlanner.Pages.MeasureUnits
                 return Page();
             }
 
-            _context.Attach(MeasureUnit).State = EntityState.Modified;
+            _context.Attach(PlanEntry).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +53,7 @@ namespace MealPlanner.Pages.MeasureUnits
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MeasureUnitExists(MeasureUnit.ID))
+                if (!PlanEntryExists(PlanEntry.ID))
                 {
                     return NotFound();
                 }
@@ -66,9 +66,9 @@ namespace MealPlanner.Pages.MeasureUnits
             return RedirectToPage("./Index");
         }
 
-        private bool MeasureUnitExists(int id)
+        private bool PlanEntryExists(int id)
         {
-            return _context.MeasureUnit.Any(e => e.ID == id);
+            return _context.PlanEntry.Any(e => e.ID == id);
         }
     }
 }

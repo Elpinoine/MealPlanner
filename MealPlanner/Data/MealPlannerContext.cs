@@ -16,16 +16,12 @@ namespace MealPlanner.Models
 
         public DbSet<MealPlanner.Models.Category> Category { get; set; }
 
-        public DbSet<MealPlanner.Models.Ingredient> Ingredient { get; set; }
-
         public DbSet<MealPlanner.Models.Recipe> Recipe { get; set; }
-
-        public DbSet<MealPlanner.Models.RecipeIngredient> RecipeIngredient { get; set; }
 
         public DbSet<MealPlanner.Models.Meal> Meal { get; set; }
 
         public DbSet<MealPlanner.Models.Plan> Plan { get; set; }
 
-        public DbSet<MealPlanner.Models.MeasureUnit> MeasureUnit { get; set; }
+        public DbSet<MealPlanner.Models.PlanEntry> PlanEntry { get; set; }
     }
 }

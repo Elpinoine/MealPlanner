@@ -18,11 +18,8 @@ namespace MealPlanner.Pages.Recipes
             _context = context;
         }
 
-        public async Task<IActionResult> OnGet()
+        public IActionResult OnGet()
         {
-            Recipe = new Recipe();
-            _context.Recipe.Add(Recipe);
-            await _context.SaveChangesAsync();
             return Page();
         }
 

@@ -2,7 +2,7 @@
 @model MealPlanner.Pages.Recipes.CreateModel
 
 @{
-    ViewData["Title"] = "Create new recipe";
+    ViewData["Title"] = "Create";
 }
 
 <h2>Create</h2>
@@ -14,6 +14,11 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Recipe.Reference" class="control-label"></label>
+                <input asp-for="Recipe.Reference" class="form-control" />
+                <span asp-validation-for="Recipe.Reference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Recipe.Title" class="control-label"></label>
                 <input asp-for="Recipe.Title" class="form-control" />
                 <span asp-validation-for="Recipe.Title" class="text-danger"></span>
@@ -24,35 +29,15 @@
                 <span asp-validation-for="Recipe.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Recipe.Steps" class="control-label"></label>
-                <input asp-for="Recipe.Steps" class="form-control" />
-                <span asp-validation-for="Recipe.Steps" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Recipe.Notes" class="control-label"></label>
                 <input asp-for="Recipe.Notes" class="form-control" />
                 <span asp-validation-for="Recipe.Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Recipe.Favourite" /> @Html.DisplayNameFor(model => model.Recipe.Favourite)
-                    </label>
-                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
-</div>
-
-<h4>Ingredients</h4>
-<div>
-    <a asp-page="/RecipeIngredients/Index">Add ingredients</a>
-</div>
-<div>
-    <p>TODO: Add list of ingredients here</p>
 </div>
 
 <div>

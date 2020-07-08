@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MealPlanner.Models;
 
-namespace MealPlanner.Pages.RecipeIngredients
+namespace MealPlanner.Pages.Entries
 {
     public class CreateModel : PageModel
     {
@@ -16,9 +16,6 @@ namespace MealPlanner.Pages.RecipeIngredients
         public CreateModel(MealPlanner.Models.MealPlannerContext context)
         {
             _context = context;
-            MeasureUnits = _context.MeasureUnit.Select(x => new SelectListItem { Value = x.ID.ToString(), Text = x.Abbreviation }).ToList();
-            Ingredients = _context.Ingredient.Select(x => new SelectListItem { Value = x.ID.ToString(), Text = x.Name }).ToList();
-
         }
 
         public IActionResult OnGet()
@@ -27,10 +24,7 @@ namespace MealPlanner.Pages.RecipeIngredients
         }
 
         [BindProperty]
-        public RecipeIngredient RecipeIngredient { get; set; }
-
-        public List<SelectListItem> MeasureUnits { get; set; }
-        public List<SelectListItem> Ingredients { get; set; }
+        public PlanEntry PlanEntry { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -39,7 +33,7 @@ namespace MealPlanner.Pages.RecipeIngredients
                 return Page();
             }
 
-            _context.RecipeIngredient.Add(RecipeIngredient);
+            _context.PlanEntry.Add(PlanEntry);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

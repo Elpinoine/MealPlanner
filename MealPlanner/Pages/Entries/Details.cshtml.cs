@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MealPlanner.Models;
 
-namespace MealPlanner.Pages.MeasureUnits
+namespace MealPlanner.Pages.Entries
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace MealPlanner.Pages.MeasureUnits
             _context = context;
         }
 
-        public MeasureUnit MeasureUnit { get; set; }
+        public PlanEntry PlanEntry { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,9 +27,9 @@ namespace MealPlanner.Pages.MeasureUnits
                 return NotFound();
             }
 
-            MeasureUnit = await _context.MeasureUnit.FirstOrDefaultAsync(m => m.ID == id);
+            PlanEntry = await _context.PlanEntry.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (MeasureUnit == null)
+            if (PlanEntry == null)
             {
                 return NotFound();
             }

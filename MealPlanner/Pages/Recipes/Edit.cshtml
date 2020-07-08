@@ -14,9 +14,9 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Recipe.Steps" class="control-label"></label>
-                <input asp-for="Recipe.Steps" class="form-control" />
-                <span asp-validation-for="Recipe.Steps" class="text-danger"></span>
+                <label asp-for="Recipe.Reference" class="control-label"></label>
+                <input asp-for="Recipe.Reference" class="form-control" />
+                <span asp-validation-for="Recipe.Reference" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="Recipe.ID" />
             <div class="form-group">
@@ -35,13 +35,6 @@
                 <span asp-validation-for="Recipe.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Recipe.Favourite" /> @Html.DisplayNameFor(model => model.Recipe.Favourite)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
@@ -52,3 +45,6 @@
     <a asp-page="./Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,5 +1,5 @@
 ﻿@page
-@model MealPlanner.Pages.Ingredients.IndexModel
+@model MealPlanner.Pages.Entries.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,16 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Ingredient[0].Name)
+                @Html.DisplayNameFor(model => model.PlanEntry[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanEntry[0].Notes)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Ingredient) {
+@foreach (var item in Model.PlanEntry) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

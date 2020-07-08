@@ -17,30 +17,20 @@ namespace MealPlanner.Pages.Recipes
         public EditModel(MealPlanner.Models.MealPlannerContext context)
         {
             _context = context;
-//            RecipeIngredients = _context.RecipeIngredient.Select(x => new  { Value = x.ID.ToString(), Text = x.Ingredient.ToString()}).ToList();
-   
         }
 
         [BindProperty]
         public Recipe Recipe { get; set; }
 
-        public List<RecipeIngredient> RecipeIngredients { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? id = null)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
-                Recipe = new Recipe();
-                Recipe.Title = "New Recipe";
-                _context.Recipe.Add(Recipe);
-                await _context.SaveChangesAsync(); // ID will be created and set here
- //               return NotFound();
+                return NotFound();
             }
-            else {
-                Recipe = await _context.Recipe.FirstOrDefaultAsync(m => m.ID == id);
-                // TODO: check for null
-                RecipeIngredients = _context.RecipeIngredient.Where(x => x.Recipe.ID == Recipe.ID).ToList();
-            }
+
+            Recipe = await _context.Recipe.FirstOrDefaultAsync(m => m.ID == id);
+
             if (Recipe == null)
             {
                 return NotFound();
