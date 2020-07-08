@@ -18,8 +18,8 @@ namespace MealPlanner.Pages.Entries
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
+        public IActionResult OnGet(int? planId) {
+          var id = planId;
             return Page();
         }
 

@@ -21,5 +21,32 @@
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Plan.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Back to List</a> |
+    <a asp-page="/Entries/Create" asp-route-planid="@Model.Plan.ID">New entry</a>
 </div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanEntries[0].Date)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.PlanEntries) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-page="/Entries/Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="/Entries/Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="/Entries/Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

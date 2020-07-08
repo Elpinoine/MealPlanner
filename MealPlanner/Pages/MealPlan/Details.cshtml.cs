@@ -20,6 +20,8 @@ namespace MealPlanner.Pages.MealPlan
 
         public Plan Plan { get; set; }
 
+        public List<PlanEntry> PlanEntries { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -28,6 +30,7 @@ namespace MealPlanner.Pages.MealPlan
             }
 
             Plan = await _context.Plan.FirstOrDefaultAsync(m => m.ID == id);
+            PlanEntries = _context.PlanEntry.ToList(); // TODO: get only PlanEntries for the current plan
 
             if (Plan == null)
             {
