@@ -11,7 +11,7 @@ namespace MealPlanner.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
-        public List<Category> Categories { get; set; }
+        public ICollection<Category> Categories { get; set; }
         // TODO: Add an image or a list of images
     }
 }

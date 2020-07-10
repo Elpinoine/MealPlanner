@@ -7,6 +7,6 @@ namespace MealPlanner.Models
 {
     public class Meal : Food
     {
-        public List<Recipe> Recipes{ get; set; }
+        public ICollection<Recipe> Recipes{ get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace MealPlanner.Models {
 
     public string Name { get; set; }
 
-    public List<PlanEntry> PlanEntries { get; set; }
+    public ICollection<PlanEntry> PlanEntries { get; set; }
   }
 }
