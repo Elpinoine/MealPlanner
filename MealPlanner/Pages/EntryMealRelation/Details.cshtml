@@ -1,0 +1,31 @@
+﻿@page
+@model MealPlanner.Pages.EntryMealRelation.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlanEntryMealRelation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanEntryMealRelation.PlanEntry)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlanEntryMealRelation.PlanEntry.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanEntryMealRelation.Meal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlanEntryMealRelation.Meal.ID)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -15,7 +15,8 @@ namespace MealPlanner.Models {
     [DataType( DataType.Date )]
     public DateTime Date { get; set; }
 
-    public ICollection<Food> Foods { get; set; }
+    //public ICollection<Food> Foods { get; set; }
+    public ICollection<PlanEntryMealRelation> PlanEntryMealRelations { get; set; }
 
     public string Notes { get; set; }
   }

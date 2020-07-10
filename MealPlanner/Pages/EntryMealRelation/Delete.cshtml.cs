@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MealPlanner.Models;
 
-namespace MealPlanner.Pages.Recipes
+namespace MealPlanner.Pages.EntryMealRelation
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace MealPlanner.Pages.Recipes
         }
 
         [BindProperty]
-        public Recipe Recipe { get; set; }
+        public PlanEntryMealRelation PlanEntryMealRelation { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,11 @@ namespace MealPlanner.Pages.Recipes
                 return NotFound();
             }
 
-            Recipe = await _context.Recipe.FirstOrDefaultAsync(m => m.ID == id);
+            PlanEntryMealRelation = await _context.PlanEntryMealRelations
+                .Include(p => p.Meal)
+                .Include(p => p.PlanEntry).FirstOrDefaultAsync(m => m.PlanEntryId == id);
 
-            if (Recipe == null)
+            if (PlanEntryMealRelation == null)
             {
                 return NotFound();
             }
@@ -44,11 +46,11 @@ namespace MealPlanner.Pages.Recipes
                 return NotFound();
             }
 
-            Recipe = await _context.Recipe.FindAsync(id);
+            PlanEntryMealRelation = await _context.PlanEntryMealRelations.FindAsync(id);
 
-            if (Recipe != null)
+            if (PlanEntryMealRelation != null)
             {
-                _context.Recipe.Remove(Recipe);
+                _context.PlanEntryMealRelations.Remove(PlanEntryMealRelation);
                 await _context.SaveChangesAsync();
             }
 

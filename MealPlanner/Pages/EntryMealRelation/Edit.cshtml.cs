@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MealPlanner.Models;
 
-namespace MealPlanner.Pages.Recipes
+namespace MealPlanner.Pages.EntryMealRelation
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace MealPlanner.Pages.Recipes
         }
 
         [BindProperty]
-        public Recipe Recipe { get; set; }
+        public PlanEntryMealRelation PlanEntryMealRelation { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,12 +29,16 @@ namespace MealPlanner.Pages.Recipes
                 return NotFound();
             }
 
-            Recipe = await _context.Recipe.FirstOrDefaultAsync(m => m.ID == id);
+            PlanEntryMealRelation = await _context.PlanEntryMealRelations
+                .Include(p => p.Meal)
+                .Include(p => p.PlanEntry).FirstOrDefaultAsync(m => m.PlanEntryId == id);
 
-            if (Recipe == null)
+            if (PlanEntryMealRelation == null)
             {
                 return NotFound();
             }
+           ViewData["MealId"] = new SelectList(_context.Meal, "ID", "ID");
+           ViewData["PlanEntryId"] = new SelectList(_context.PlanEntry, "ID", "ID");
             return Page();
         }
 
@@ -45,7 +49,7 @@ namespace MealPlanner.Pages.Recipes
                 return Page();
             }
 
-            _context.Attach(Recipe).State = EntityState.Modified;
+            _context.Attach(PlanEntryMealRelation).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +57,7 @@ namespace MealPlanner.Pages.Recipes
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RecipeExists(Recipe.ID))
+                if (!PlanEntryMealRelationExists(PlanEntryMealRelation.PlanEntryId))
                 {
                     return NotFound();
                 }
@@ -66,9 +70,9 @@ namespace MealPlanner.Pages.Recipes
             return RedirectToPage("./Index");
         }
 
-        private bool RecipeExists(int id)
+        private bool PlanEntryMealRelationExists(int id)
         {
-            return _context.Recipe.Any(e => e.ID == id);
+            return _context.PlanEntryMealRelations.Any(e => e.PlanEntryId == id);
         }
     }
 }
