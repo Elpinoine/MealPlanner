@@ -11,6 +11,8 @@ namespace MealPlanner.Models {
     public string Notes { get; set; }
     public ICollection<Category> Categories { get; set; }
     public ICollection<Recipe> Recipes { get; set; }
+
     public ICollection<PlanEntry> PlanEntries { get; set; }
+
   }
 }

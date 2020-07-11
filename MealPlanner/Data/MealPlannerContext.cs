@@ -25,7 +25,6 @@ namespace MealPlanner.Models
 
     public DbSet<MealPlanner.Models.PlanEntry> PlanEntry { get; set; }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       modelBuilder.Entity<Meal>().ToTable("Meal");
