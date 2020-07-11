@@ -9,14 +9,17 @@ namespace MealPlanner.Models {
 
     [ForeignKey("Plan")]
     public int PlanId { get; set; }
-
     public virtual Plan Plan { get; set; }
 
-    [DataType( DataType.Date )]
+    [ForeignKey("Meal")]
+    public int MealId { get; set; }
+    public virtual Meal Meal { get; set; }
+    //public ICollection<Meal> Meal { get; set; }
+    //public ICollection<PlanEntryMealRelation> PlanEntryMealRelations { get; set; }
+
+    //public string Notes { get; set; }
+
+    [DataType(DataType.Date)]
     public DateTime Date { get; set; }
-
-    public ICollection<Food> Foods { get; set; }
-
-    public string Notes { get; set; }
   }
 }

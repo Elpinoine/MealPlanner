@@ -29,12 +29,16 @@ namespace MealPlanner.Pages.Entries
                 return NotFound();
             }
 
-            PlanEntry = await _context.PlanEntry.FirstOrDefaultAsync(m => m.ID == id);
+            PlanEntry = await _context.PlanEntry
+                .Include(p => p.Meal)
+                .Include(p => p.Plan).FirstOrDefaultAsync(m => m.ID == id);
 
             if (PlanEntry == null)
             {
                 return NotFound();
             }
+           ViewData["MealId"] = new SelectList(_context.Meal, "ID", "ID");
+           ViewData["PlanId"] = new SelectList(_context.Plan, "ID", "ID");
             return Page();
         }
 

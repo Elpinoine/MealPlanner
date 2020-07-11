@@ -13,16 +13,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.PlanEntry.Plan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlanEntry.Plan.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanEntry.Meal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlanEntry.Meal.ID)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.PlanEntry.Date)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.PlanEntry.Date)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PlanEntry.Notes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PlanEntry.Notes)
         </dd>
     </dl>
     

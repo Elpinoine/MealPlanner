@@ -22,7 +22,9 @@ namespace MealPlanner.Pages.Entries
 
         public async Task OnGetAsync()
         {
-            PlanEntry = await _context.PlanEntry.ToListAsync();
+            PlanEntry = await _context.PlanEntry
+                .Include(p => p.Meal)
+                .Include(p => p.Plan).ToListAsync();
         }
     }
 }

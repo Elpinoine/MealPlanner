@@ -14,14 +14,19 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="PlanEntry.PlanId" class="control-label"></label>
+                <select asp-for="PlanEntry.PlanId" class ="form-control" asp-items="ViewBag.PlanId"></select>
+            </div>
+            <div class="form-group">
+              <label asp-for="PlanEntry.MealId" class="control-label"></label>
+              <select asp-for="PlanEntry.MealId" class="form-control" asp-items="ViewBag.MealId"></select>
+              <a asp-page="/Meals/Create">New Meal</a>
+
+            </div>
+            <div class="form-group">
                 <label asp-for="PlanEntry.Date" class="control-label"></label>
                 <input asp-for="PlanEntry.Date" class="form-control" />
                 <span asp-validation-for="PlanEntry.Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PlanEntry.Notes" class="control-label"></label>
-                <input asp-for="PlanEntry.Notes" class="form-control" />
-                <span asp-validation-for="PlanEntry.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
