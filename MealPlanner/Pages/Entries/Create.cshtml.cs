@@ -21,7 +21,7 @@ namespace MealPlanner.Pages.Entries
     public IActionResult OnGet(int planid)
     {
 
-      ViewData["MealId"] = new SelectList(_context.Meal, "ID", "ID");
+      ViewData["MealId"] = new SelectList(_context.Meal, "ID", "Title");
       //ViewData["PlanId"] = new SelectList(_context.Plan, "ID", "ID");
       return Page();
     }
@@ -40,7 +40,9 @@ namespace MealPlanner.Pages.Entries
       _context.PlanEntry.Add(PlanEntry);
       await _context.SaveChangesAsync();
 
-      return RedirectToPage("./Index");
+      //      return RedirectToPage("./Index");
+      return RedirectToPage("/MealPlan/Details", new { id = planid });
+
     }
   }
 }
