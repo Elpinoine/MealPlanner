@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MealPlanner.Migrations
 {
     [DbContext(typeof(MealPlannerContext))]
-    [Migration("20200711185219_ResetMigrations")]
+    [Migration("20200713174713_ResetMigrations")]
     partial class ResetMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,8 +49,6 @@ namespace MealPlanner.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description");
-
-                    b.Property<string>("Notes");
 
                     b.Property<string>("Title");
 

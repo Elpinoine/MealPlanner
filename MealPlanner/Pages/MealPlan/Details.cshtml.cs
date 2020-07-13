@@ -35,7 +35,7 @@ namespace MealPlanner.Pages.MealPlan
             {
                 return NotFound();
             }
-            PlanEntries = _context.PlanEntry.Where( p => p!=null && p.PlanId == id ).ToList();
+            PlanEntries = _context.PlanEntry.Where( p => p!=null && p.PlanId == id ).Include("Meal").OrderBy( p => p.Date ).ToList();
 
             return Page();
         }
