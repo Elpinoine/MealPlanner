@@ -2,41 +2,44 @@
 @model MealPlanner.Pages.Entries.CreateModel
 
 @{
-    ViewData["Title"] = "New entry";
+  ViewData["Title"] = "New entry";
 }
 
-  <h2>New entry</h2>
+<h2>New entry</h2>
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
-      <form method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <!--<div class="form-group">
-      <label asp-for="PlanEntry.PlanId" class="control-label"></label>
-      <select asp-for="PlanEntry.PlanId" class ="form-control" asp-items="ViewBag.PlanId"></select>
-  </div>-->
-        <div class="form-group">
-          <label asp-for="PlanEntry.Date" class="control-label"></label>
-          <input asp-for="PlanEntry.Date" class="form-control" />
-          <span asp-validation-for="PlanEntry.Date" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="PlanEntry.MealId" class="control-label">Meal</label>
-          <select asp-for="PlanEntry.MealId" class="form-control" asp-items="ViewBag.MealId"></select>
-          <a asp-page="/Meals/Create" asp-route-planid="@Model.PlanEntry.PlanId">New Meal</a>
-        </div>
-        <div class="form-group">
-          <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-      </form>
+  <div class="col-md-4">
+    <form method="post">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      @if (ViewData["PlanIdReferer"] == null)
+      {
+        <div typeof="" class="form-group">
+        <label asp-for="PlanEntry.PlanId" class="control-label"></label>
+        <select asp-for="PlanEntry.PlanId" class ="form-control" asp-items="ViewBag.PlanId"></select>
     </div>
+      }
+      <div class="form-group">
+        <label asp-for="PlanEntry.Date" class="control-label"></label>
+        <input asp-for="PlanEntry.Date" class="form-control" />
+        <span asp-validation-for="PlanEntry.Date" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="PlanEntry.MealId" class="control-label">Meal</label>
+        <select asp-for="PlanEntry.MealId" class="form-control" asp-items="ViewBag.MealId"></select>
+        <a asp-page="/Meals/Create" asp-route-planid="@ViewData["PlanIdReferer"]">New Meal</a>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
+      </div>
+    </form>
+  </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+  <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

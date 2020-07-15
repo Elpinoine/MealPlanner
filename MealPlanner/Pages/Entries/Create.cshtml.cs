@@ -18,29 +18,36 @@ namespace MealPlanner.Pages.Entries
       _context = context;
     }
 
-    public IActionResult OnGet(int planid)
+    public IActionResult OnGet(int? planid)
     {
 
-      ViewData["MealId"] = new SelectList(_context.Meal, "ID", "Title").OrderBy( m => m.Text );
-      //ViewData["PlanId"] = new SelectList(_context.Plan, "ID", "ID");
+      ViewData["MealId"] = new SelectList(_context.Meal, "ID", "Title").OrderBy(m => m.Text);
+      ViewData["PlanId"] = new SelectList(_context.Plan, "ID", "ID",planid);
+      ViewData["PlanIdReferer"] = planid;
       return Page();
     }
 
     [BindProperty]
     public PlanEntry PlanEntry { get; set; }
 
-    public async Task<IActionResult> OnPostAsync(int planid)
+    public async Task<IActionResult> OnPostAsync(int? planid)
     {
       if (!ModelState.IsValid)
       {
         return Page();
       }
 
-      PlanEntry.PlanId = planid;
+      if (planid != null)
+      {
+        PlanEntry.PlanId = planid.GetValueOrDefault(0);
+      }
       _context.PlanEntry.Add(PlanEntry);
       await _context.SaveChangesAsync();
 
-      //      return RedirectToPage("./Index");
+      if (planid == null) {
+        return RedirectToPage("./Index");
+
+      }
       return RedirectToPage("/MealPlan/Details", new { id = planid });
 
     }

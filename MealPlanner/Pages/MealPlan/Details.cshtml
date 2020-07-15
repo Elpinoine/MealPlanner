@@ -10,7 +10,7 @@
 
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Plan.ID">Edit</a> |
-    <a asp-page="/Entries/Create">New entry</a>
+    <a asp-page="/Entries/Create" asp-route-planid="@Model.Plan.ID">New entry</a>
 </div>
 
 <h3>Entries</h3>

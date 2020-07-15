@@ -38,7 +38,7 @@ namespace MealPlanner.Pages.Entries
                 return NotFound();
             }
            ViewData["MealId"] = new SelectList(_context.Meal, "ID", "Title");
-           ViewData["PlanId"] = new SelectList(_context.Plan, "ID", "ID");
+//           ViewData["PlanId"] = new SelectList(_context.Plan, "ID", "ID");
             return Page();
         }
 
