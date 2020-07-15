@@ -22,7 +22,7 @@ namespace MealPlanner.Pages.Meals
 
         public async Task OnGetAsync()
         {
-            Meal = await _context.Meal.ToListAsync();
+            Meal = await _context.Meal.OrderBy( m => m.Title ).ToListAsync();
         }
     }
 }

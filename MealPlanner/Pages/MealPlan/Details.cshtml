@@ -10,8 +10,7 @@
 
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Plan.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a> |
-    <a asp-page="/Entries/Create" asp-route-planid="@Model.Plan.ID">New entry</a>
+    <a asp-page="/Entries/Create">New entry</a>
 </div>
 
 <h3>Entries</h3>
@@ -35,9 +34,11 @@
           @Html.DisplayFor(modelItem => item.Meal.Title)
         </td>
         <td>
-          <a asp-page="/Entries/Edit" asp-route-id="@item.ID">Edit</a> |
-          <a asp-page="/Entries/Details" asp-route-id="@item.ID">Details</a> |
-          <a asp-page="/Entries/Delete" asp-route-id="@item.ID">Delete</a>
+          <!--
+  <a asp-page="/Entries/Edit" asp-route-id="@item.ID">Edit</a> |
+  <a asp-page="/Entries/Details" asp-route-id="@item.ID">Details</a> |
+    -->
+          <a asp-page="/Entries/Delete" asp-route-id="@item.ID" asp-route-planid="@Model.Plan.ID">Delete</a>
         </td>
       </tr>
         }

@@ -21,7 +21,7 @@ namespace MealPlanner.Pages.Entries
     public IActionResult OnGet(int planid)
     {
 
-      ViewData["MealId"] = new SelectList(_context.Meal, "ID", "Title");
+      ViewData["MealId"] = new SelectList(_context.Meal, "ID", "Title").OrderBy( m => m.Text );
       //ViewData["PlanId"] = new SelectList(_context.Plan, "ID", "ID");
       return Page();
     }
