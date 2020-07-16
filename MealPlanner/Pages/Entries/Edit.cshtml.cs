@@ -37,9 +37,9 @@ namespace MealPlanner.Pages.Entries
             {
                 return NotFound();
             }
-           ViewData["MealId"] = new SelectList(_context.Meal, "ID", "Title");
+           ViewData["MealId"] = new SelectList(_context.Meal, "ID", "Name");
            ViewData["PlanId"] = new SelectList(_context.Plan, "ID", "Name");
-            return Page();
+            return Page(); 
         }
 
         public async Task<IActionResult> OnPostAsync()
