@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MealPlanner.Models;
 
-namespace MealPlanner.Pages.Meals
+namespace MealPlanner.Pages.Entries
 {
     public class IndexModel : PageModel
     {
@@ -18,11 +18,13 @@ namespace MealPlanner.Pages.Meals
             _context = context;
         }
 
-        public IList<Meal> Meal { get;set; }
+        public IList<PlanEntry> PlanEntry { get;set; }
 
         public async Task OnGetAsync()
         {
-            Meal = await _context.Meal.OrderBy( m => m.Name ).ToListAsync();
+            PlanEntry = await _context.PlanEntry
+                .Include(p => p.Meal)
+                .Include(p => p.Plan).ToListAsync();
         }
     }
 }

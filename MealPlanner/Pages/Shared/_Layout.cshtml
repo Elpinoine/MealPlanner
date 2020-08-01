@@ -26,14 +26,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/MealPlan/Index" class="navbar-brand">MealPlanner</a>
+                <a asp-page="/Index" class="navbar-brand">MealPlanner</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
-                </ul>
+              <ul class="nav navbar-nav">
+                <li><a asp-page="/MealPlan/Index">Home</a></li>
+                <li><a asp-page="/Meals/Index">Meals</a></li>
+                <li><a asp-page="/Entries/Index">Entries</a></li>
+                <li><a asp-page="/About">About</a></li>
+                <!-- <li><a asp-page="/Contact">Contact</a></li> -->
+              </ul>
             </div>
         </div>
     </nav>
@@ -44,7 +46,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - MealPlanner</p>
+            <p>&copy; @DateTime.Today.Year - MealPlanner</p>
         </footer>
     </div>
 

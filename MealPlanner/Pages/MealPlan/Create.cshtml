@@ -2,7 +2,7 @@
 @model MealPlanner.Pages.MealPlan.CreateModel
 
 @{
-    ViewData["Title"] = "Add new plan";
+    ViewData["Title"] = "Create";
 }
 
 <h2>Create</h2>
@@ -14,14 +14,9 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Plan.Date" class="control-label"></label>
-                <input asp-for="Plan.Date" class="form-control" />
-                <span asp-validation-for="Plan.Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plan.Notes" class="control-label"></label>
-                <input asp-for="Plan.Notes" class="form-control" />
-                <span asp-validation-for="Plan.Notes" class="text-danger"></span>
+                <label asp-for="Plan.Name" class="control-label"></label>
+                <input asp-for="Plan.Name" class="form-control" />
+                <span asp-validation-for="Plan.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -30,19 +25,10 @@
     </div>
 </div>
 
-
-<h4>Recipes</h4>
 <div>
-    <a asp-page="/Recipes/Create" asp-route-id="@Model.Plan.ID">Add recipe</a>
+    <a asp-page="Index">Back to List</a>
 </div>
-    <div>
-        <p>TODO: Add list of recipes</p>
-    </div>
 
-    <div>
-        <a asp-page="Index">Back to List</a>
-    </div>
-
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
