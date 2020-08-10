@@ -1,47 +1,49 @@
 ﻿@page
+@using Microsoft.AspNetCore.Razor.Language.Intermediate
 @model MealPlanner.Pages.MealPlan.DetailsModel
 
 @{
-    ViewData["Title"] = "Plan Details";
+  ViewData["Title"] = "Plan Details";
 }
 
-  <h2>@Html.DisplayFor(model => model.Plan.Name)</h2>
+<h2>@Html.DisplayFor( model => model.Plan.Name )</h2>
 
 
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Plan.ID">Edit</a> |
-    <a asp-page="/Entries/Create" asp-route-planid="@Model.Plan.ID">New entry</a>
+  <a asp-page="./Edit" asp-route-id="@Model.Plan.ID">Edit</a> |
+  <a asp-page="/Entries/Create" asp-route-planid="@Model.Plan.ID">New entry</a>
 </div>
 
 <h3>Entries</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor( model => model.PlanEntries.FirstOrDefault().Date )
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ( var item in Model.PlanEntries ) {
-      <tr>
-        <td>
-          @Html.DisplayFor(modelItem => item.Date)
+<table class="table main-table">
+  <tbody>
+  @foreach ( var group in Model.EntriesGroupedByDate ) {
+    foreach (var entry in group ) {
+      var isFirstEntry = entry == group.FirstOrDefault();
+    <tr>
+      @if ( isFirstEntry ) {
+        <td class="date-cell">
+          @Html.DisplayFor( modelItem => entry.Date.DayOfWeek )
+          <text> </text>
+          @Html.DisplayFor( modelItem => entry.Date )
         </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Meal.Name)
-        </td>
-        <td>
-          <!--
-  <a asp-page="/Entries/Edit" asp-route-id="@item.ID">Edit</a> |
-  <a asp-page="/Entries/Details" asp-route-id="@item.ID">Details</a> |
+      }
+      else {
+        <td class="no-border"></td>
+      }
+      <td class="meal-cell @( isFirstEntry ? "":"no-border") ">
+        @Html.DisplayFor( modelItem => entry.Meal.Name )
+      </td>
+      <td class="@( isFirstEntry ? "":"no-border") ">
+        <!--
+    <a asp-page="/Entries/Edit" asp-route-id="@entry.ID">Edit</a> |
+    <a asp-page="/Entries/Details" asp-route-id="@entry.ID">Details</a> |
     -->
-          <a asp-page="/Entries/Delete" asp-route-id="@item.ID" asp-route-planid="@Model.Plan.ID">Delete</a>
-        </td>
-      </tr>
-        }
-    </tbody>
+        <a asp-page="/Entries/Delete" asp-route-id="@entry.ID" asp-route-planid="@Model.Plan.ID">Delete</a>
+      </td>
+    </tr>      
+    }
+  }
+  </tbody>
 </table>
-

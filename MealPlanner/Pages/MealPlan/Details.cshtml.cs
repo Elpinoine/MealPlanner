@@ -22,6 +22,8 @@ namespace MealPlanner.Pages.MealPlan
 
     public ICollection<PlanEntry> PlanEntries { get; set; }
 
+    public ICollection<IGrouping<DateTime,PlanEntry>> EntriesGroupedByDate { get; set; }
+
     public async Task<IActionResult> OnGetAsync(int? id)
     {
       if (id == null)
@@ -35,7 +37,9 @@ namespace MealPlanner.Pages.MealPlan
       {
         return NotFound();
       }
-      PlanEntries = _context.PlanEntry.Where(p => p != null && p.PlanId == id).Include("Meal").OrderBy(p => p.Date).ToList();
+      PlanEntries = _context.PlanEntry.Where( p => p != null && p.PlanId == id ).Include( "Meal" ).OrderBy( p => p.Date ).ToList();
+
+      EntriesGroupedByDate = _context.PlanEntry.Where( p => p != null && p.PlanId == id ).Include( "Meal" ).GroupBy( p => p.Date ).ToList();
 
       return Page();
     }
