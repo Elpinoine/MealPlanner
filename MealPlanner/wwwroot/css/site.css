@@ -35,3 +35,16 @@ body {
         display: none;
     }
 }
+
+.gradient-bg {
+  background: rgb(2,0,36);
+  background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 27%, rgba(0,212,255,1) 84%);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: white;
+}
+.navbar-inverse .navbar-nav > li > a:hover
+{  
+  text-shadow: 0 0 10px white;
+}

@@ -1,19 +1,19 @@
 ﻿.table .date-cell {
   font-weight: bold;
   font-size: 1em;
-  width: 20%
+  width: 20%;
 }
 
 .table .date-cell-empty {
-  border-top: none
+  border-top: none;
 }
 
 .table .meal-cell {
-  width: 100%
+  width: 100%;
 }
 
 .table .no-border {
-  border: none
+  border: none;
 }
 
 /*.table tr:nth-child(even) {
