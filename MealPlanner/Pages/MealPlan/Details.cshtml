@@ -21,29 +21,30 @@
   @foreach ( var group in Model.EntriesGroupedByDate ) {
     foreach (var entry in group ) {
       var isFirstEntry = entry == group.FirstOrDefault();
-    <tr>
-      @if ( isFirstEntry ) {
-        <td class="date-cell">
-          @Html.DisplayFor( modelItem => entry.Date.DayOfWeek )
-          <text> </text>
-          @Html.DisplayFor( modelItem => entry.Date )
+      <tr>
+        @if ( isFirstEntry ) {
+          <td class="date-cell">
+            @Html.DisplayFor( modelItem => entry.Date.DayOfWeek )
+            <text> </text>
+            @Html.DisplayFor( modelItem => entry.Date )
+          </td>
+        }
+        else {
+          <td class="no-border"></td>
+        }
+        <td class="meal-cell @( isFirstEntry ? "":"no-border") ">
+          @Html.DisplayFor( modelItem => entry.Meal.Name )
         </td>
-      }
-      else {
-        <td class="no-border"></td>
-      }
-      <td class="meal-cell @( isFirstEntry ? "":"no-border") ">
-        @Html.DisplayFor( modelItem => entry.Meal.Name )
-      </td>
-      <td class="@( isFirstEntry ? "":"no-border") ">
-        <!--
-    <a asp-page="/Entries/Edit" asp-route-id="@entry.ID">Edit</a> |
-    <a asp-page="/Entries/Details" asp-route-id="@entry.ID">Details</a> |
-    -->
-        <a asp-page="/Entries/Delete" asp-route-id="@entry.ID" asp-route-planid="@Model.Plan.ID">Delete</a>
-      </td>
-    </tr>      
+        <td class="@( isFirstEntry ? "":"no-border") ">
+          <!--
+          <a asp-page="/Entries/Edit" asp-route-id="@entry.ID">Edit</a> |
+          <a asp-page="/Entries/Details" asp-route-id="@entry.ID">Details</a> |
+          -->
+          <a asp-page="/Entries/Delete" asp-route-id="@entry.ID" asp-route-planid="@Model.Plan.ID">Delete</a>
+        </td>
+      </tr>      
     }
   }
   </tbody>
 </table>
+
